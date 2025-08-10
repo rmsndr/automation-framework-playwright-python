@@ -22,6 +22,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install system dependencies for WebKit
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-0 libgtk-4-1 libwoff1 libvpx9 libopus0 libevent-2.1-7 \
+            libavif16 libsecret-1-0 libhyphen0 libmanette-0.2-0 libgles2 libx264-dev \
+            libgraphene-1.0-0 libgstallocators-1.0-0 libgstapp-1.0-0 libgstpbutils-1.0-0 \
+            libgstaudio-1.0-0 libgsttag-1.0-0 libgstvideo-1.0-0 libgstgl-1.0-0 \
+            libgstcodecparsers-1.0-0 libgstfft-1.0-0 libflite1 libharfbuzz-icu0
+
       - name: Install Playwright browsers
         run: npx playwright install
 
