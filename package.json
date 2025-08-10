@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/rmsndr/saucedemo-tests/issues"
   },
-  "homepage": "https://github.com/rmsndr/saucedemo-tests#readme"
+  "homepage": "https://github.com/rmsndr/saucedemo-tests#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.54.2",
+    "playwright": "^1.54.2"
+  }
 }
