@@ -6,3 +6,4 @@ axe-playwright-python==0.1.5
 requests==2.32.4
 python-slugify==8.0.4
 tqdm==4.67.1
+pytest-html==4.1.1
