@@ -5,7 +5,7 @@ from pages.LoginPage import LoginPage
 
 from utils.accessibility_utils import accessibility_utils
 
-
+@pytest.mark.login
 def test_valid_login(page: Page):
     login_page = LoginPage(page)
     login_page.page.goto("https://www.saucedemo.com/")
@@ -16,7 +16,7 @@ def test_valid_login(page: Page):
 
 
 @pytest.mark.skip(reason="This test is for invalid login scenarios")
-
+@pytest.mark.login
 def test_invalid_login(page: Page):
     page.goto("https://www.saucedemo.com/")
     login_page = LoginPage(page)

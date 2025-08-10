@@ -4,6 +4,7 @@ from playwright.sync_api import Page
 from tests.test_login import test_valid_login
 from utils.common_utils import get_current_timestamp
 
+@pytest.mark.inventory
 def test_add_to_cart(page: Page):
     test_valid_login(page)  # Ensure user is logged in before adding items to cart
     inventory_page = InventoryPage.InventoryPage(page)
@@ -16,6 +17,7 @@ def test_add_to_cart(page: Page):
     with open("logging_tests/cart_addition_log.txt", "a") as log_file:
         log_file.write(f"Items added to cart successfully. Current cart count: {cart_page.get_cart_count()} items.\t {get_current_timestamp()}\n")
 
+@pytest.mark.inventory
 def navigate_to_cart(page: Page):
     inventory_page = InventoryPage.InventoryPage(page)
     inventory_page.navigate_to_cart()

@@ -1,13 +1,14 @@
 import uuid
 import json
 from playwright.sync_api import Page
+import pytest
 from pages.LoginPage import LoginPage
 from pages.InventoryPage import InventoryPage
 from tests import test_login
 from utils.accessibility_utils import accessibility_utils
 
-
-def test_accessibility(page: Page):
+@pytest.mark.inventory
+def test_inventory_accessibility(page: Page):
     inventory = InventoryPage(page)
     # do not assert, save results to a file
     test_login.test_valid_login(page)
@@ -15,11 +16,12 @@ def test_accessibility(page: Page):
     result = accessibility_utils.run_axe_scan(inventory.page)
     # use the name of the test function in the file name
     # goto the results folder and save the results there
-    result.save_to_file(f"axe_results/{test_accessibility.__name__}_accessibility_results_{uuid.uuid4()}.json")
+    result.save_to_file(f"axe_results/{test_inventory_accessibility.__name__}_accessibility_results_{uuid.uuid4()}.json")
     print("Accessibility scan completed and results saved.")
     # Optionally, you can print the violations count
     print(f"Violations found: {result.violations_count}")
 
+@pytest.mark.login
 def test_login_accessibility(page: Page):
     login_page = LoginPage(page)
     login_page.page.goto("https://www.saucedemo.com")

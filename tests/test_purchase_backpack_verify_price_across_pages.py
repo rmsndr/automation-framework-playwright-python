@@ -1,3 +1,4 @@
+import pytest
 from pages import LoginPage,InventoryPage, CartPage, CheckOutStepOnePage, CheckOutStepTwoPage, CheckoutCompletePage
 from playwright.sync_api import Page
 from tests.test_add_to_cart import test_add_to_cart
@@ -7,7 +8,9 @@ def verify_backpack_price(inventory_page_backpack_price, cart_page_backpack_pric
     assert inventory_page_backpack_price == cart_page_backpack_price, "Backpack price mismatch between inventory and cart pages"
     assert inventory_page_backpack_price == checkout_step_two_page_backpack_price, "Backpack price mismatch between inventory and checkout step two pages"
     assert cart_page_backpack_price == checkout_step_two_page_backpack_price, "Backpack price mismatch between cart and checkout step two pages"
-    
+
+@pytest.mark.endtoend
+@pytest.mark.purchase
 def test_purchase_backpack_verify_price_across_pages(page: Page):
     # initialize pages
     login_page = LoginPage.LoginPage(page)

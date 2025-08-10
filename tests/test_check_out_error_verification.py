@@ -5,6 +5,7 @@ from playwright.sync_api import Page
 from tests.test_add_to_cart import test_add_to_cart
 from utils.common_utils import get_current_timestamp
 
+@pytest.mark.cart
 def test_checkout_error_verification(page: Page):
     test_add_to_cart(page)
     cart_page = CartPage.CartPage(page)
