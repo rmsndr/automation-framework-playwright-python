@@ -1,0 +1,31 @@
+$ cd "C:\Users\rama baalakrishnan\playwright-tests"
+
+
+rama baalakrishnan@BLKRSHNN MINGW64 ~
+$ cd "C:\Users\rama baalakrishnan\playwright-tests"
+
+rama baalakrishnan@BLKRSHNN MINGW64 ~/playwright-tests
+$ git init
+Initialized empty Git repository in C:/Users/rama baalakrishnan/playwright-tests/.git/
+
+rama baalakrishnan@BLKRSHNN MINGW64 ~/playwright-tests (master)
+$ git remote add origin https://github.com/rmsndr/saucedemo-tests.git
+
+rama baalakrishnan@BLKRSHNN MINGW64 ~/playwright-tests (master)
+$ git add .
+
+rama baalakrishnan@BLKRSHNN MINGW64 ~/playwright-tests (master)
+$ git commit -m "Initial commit of Saucedemo test suite"
+
+rama baalakrishnan@BLKRSHNN MINGW64 ~/playwright-tests (master)
+$ git config --global user.email "ramasundari.b@gmail.com"
+
+rama baalakrishnan@BLKRSHNN MINGW64 ~/playwright-tests (master)
+$ git config --global user.name rmsndr
+
+rama baalakrishnan@BLKRSHNN MINGW64 ~/playwright-tests (master)
+$ git commit -m "Initial commit of Saucedemo test suite"
+
+
+rama baalakrishnan@BLKRSHNN MINGW64 ~/playwright-tests (master)
+$ git push -u origin main
