@@ -1,0 +1,9 @@
+Inventory Page Backpack Price: $29.99
+Cart Page Backpack Price: $29.99
+Checkout Step Two Page Backpack Price: $29.99
+Inventory Page Backpack Price: $29.99 	 2025-08-03 15:58:12
+Cart Page Backpack Price: $29.99 	 2025-08-03 15:58:12
+Checkout Step Two Page Backpack Price: $29.99 	 2025-08-03 15:58:12
+Inventory Page Backpack Price: $29.99 	 2025-08-03 15:59:34
+Cart Page Backpack Price: $29.99 	 2025-08-03 15:59:34
+Checkout Step Two Page Backpack Price: $29.99 	 2025-08-03 15:59:34
