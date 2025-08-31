@@ -14,7 +14,6 @@ def test_valid_login(page: Page):
     assert page.locator(".inventory_list").is_visible()
     print("Login successful. User is on the inventory page.")
 
-@pytest.mark.skip(reason="This test is for breaking the login functionality")
 @pytest.mark.login
 def test_valid_login(page):
     assert False, "Intentional failure to test screenshot"
