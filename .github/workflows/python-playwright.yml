@@ -30,7 +30,7 @@ jobs:
         
     - name: Run Pytest and generate HTML report
       run: |
-        pytest --maxfail=1 --disable-warnings --html=report.html --self-contained-html
+        pytest --maxfail=1 --disable-warnings --html=index.html --self-contained-html
       continue-on-error: true        
       
     - name: Deploy HTML report to GitHub Pages
