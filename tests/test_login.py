@@ -14,9 +14,9 @@ def test_valid_login(page: Page):
     assert page.locator(".inventory_list").is_visible()
     print("Login successful. User is on the inventory page.")
 
-@pytest.mark.login
-def test_valid_login(page):
-    assert False, "Intentional failure to test screenshot"
+# @pytest.mark.login
+# def test_valid_login(page):
+#     assert False, "Intentional failure to test screenshot"
 
 @pytest.mark.skip(reason="This test is for invalid login scenarios")
 @pytest.mark.login
