@@ -1,6 +1,6 @@
 # 🧪 Python Playwright Test Automation with GitHub Actions CI
 
-Welcome! This repo contains a modular, marker-driven Python Playwright test suite with GitHub Actions CI integration. It’s designed for scalability, maintainability, and fast feedback.
+Welcome! This repo contains a modular, marker-driven Python Playwright test suite with GitHub Actions CI integration. It’s designed for scalability, maintainability, and fast feedback..
 
 ---
 
