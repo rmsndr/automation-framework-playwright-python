@@ -1,8 +1,11 @@
 name: Python Playwright Tests
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
+    tags:
+      - 'v*'
   pull_request:
     branches: [main]
 
@@ -29,6 +32,14 @@ jobs:
       run: |
         pytest --maxfail=1 --disable-warnings --html=report.html --self-contained-html
       continue-on-error: true        
+      
+    - name: Deploy HTML report to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
+        publish_branch: gh-pages
+        keep_files: true
         
     - name: Upload HTML report
       uses: actions/upload-artifact@v4
@@ -41,4 +52,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: Playwright-Failure-Screenshots
-        path: screenshots/    
+        path: screenshots/   
