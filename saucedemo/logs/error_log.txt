@@ -2,3 +2,5 @@ Checkout error verification completed successfully.
 Error message displayed: Error: Last Name is required
 Checkout error verification completed successfully. 
 Error message displayed: Error: Last Name is required 	 2025-08-03 15:59:53
+Checkout error verification completed successfully. 
+Error message displayed: Error: Last Name is required 	 2025-08-31 18:37:41
