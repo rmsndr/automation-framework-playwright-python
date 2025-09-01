@@ -17,6 +17,7 @@ def test_inventory_accessibility(page: Page):
     result = accessibility_utils.run_axe_scan(inventory.page)
     # use the name of the test function in the file name
     # goto the results folder and save the results there
+    os.makedirs("saucedemo/axe_results", exist_ok=True)
     result.save_to_file(f"saucedemo/axe_results/{test_inventory_accessibility.__name__}_accessibility_results_{uuid.uuid4()}.json")
     print("Accessibility scan completed and results saved.")
     # Optionally, you can print the violations count
