@@ -1,6 +1,6 @@
 import uuid
 from playwright.sync_api import expect
-from case_search.models.registeration_page import RegistrationPage
+from case_search.models.registration_page import RegistrationPage
 
 def register_user(context):
     page = context.page
@@ -16,7 +16,11 @@ def register_user(context):
     registration.submit_registration()
 
     # Guard: wait for confirmation
-    expect(registration.confirm_success()).to_contain_text("activation email", timeout=10000)
+    try:
+        expect(registration.confirm_success()).to_contain_text("activation email", timeout=30000)
+    except Exception as e:
+        page.screenshot(path="case_search/screenshots/registration_failure.png")
+        raise
 
     # Log result
     with open("case_search/logs/registration_log.txt", "a") as log:
