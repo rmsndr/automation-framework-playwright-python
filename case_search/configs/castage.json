@@ -1,0 +1,9 @@
+{
+  "base_url": "https://researchca2-stage.tylerhost.net/CourtRecordsSearch/ui/Home",
+  "features": {
+    "search_by_party": true,
+    "advanced_filters": false
+  }
+  "env": "stage",
+  "tenant": "castage"
+}

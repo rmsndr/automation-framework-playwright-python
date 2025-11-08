@@ -1,21 +1,39 @@
-from playwright.sync_api import Page
+from playwright.sync_api import Page, Locator
 
 class RegistrationPage:
+    """Page model exposing registration page locators only (no actions)."""
+
     def __init__(self, page: Page):
         self.page = page
 
-    def open_registration_form(self):
-        self.page.get_by_role("link", name="Register", exact=True).click()
+    @property
+    def register_link(self) -> Locator:
+        return self.page.get_by_role("link", name="Register", exact=True)
 
-    def fill_user_details(self, first_name, last_name, email, password):
-        self.page.get_by_role("textbox", name="First Name").fill(first_name)
-        self.page.get_by_role("textbox", name="Last Name").fill(last_name)
-        self.page.get_by_role("textbox", name="Email").fill(email)
-        self.page.get_by_role("textbox", name="Password", exact=True).fill(password)
-        self.page.get_by_role("textbox", name="Confirm Password").fill(password)
+    @property
+    def first_name_field(self) -> Locator:
+        return self.page.get_by_role("textbox", name="First Name")
 
-    def submit_registration(self):
-        self.page.get_by_role("button", name="Register").click()
+    @property
+    def last_name_field(self) -> Locator:
+        return self.page.get_by_role("textbox", name="Last Name")
 
-    def confirm_success(self):
+    @property
+    def email_field(self) -> Locator:
+        return self.page.get_by_role("textbox", name="Email")
+
+    @property
+    def password_field(self) -> Locator:
+        return self.page.get_by_role("textbox", name="Password", exact=True)
+
+    @property
+    def confirm_password_field(self) -> Locator:
+        return self.page.get_by_role("textbox", name="Confirm Password")
+
+    @property
+    def register_button(self) -> Locator:
+        return self.page.get_by_role("button", name="Register")
+
+    @property
+    def alert(self) -> Locator:
         return self.page.get_by_role("alert")

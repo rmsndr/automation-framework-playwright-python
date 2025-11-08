@@ -1,13 +1,10 @@
 {
-  "tenant": "txstage",
-  "label": "Texas Stage",
-  "region": "Southwest",
   "base_url": "https://researchtx-stage.tylerhost.net/CourtRecordsSearch/Home#!/home",
   "features": {
     "search_by_party": true,
-    "search_by_case": true,
-    "advanced_filters": false,
-    "login_required": true,
-    "accessibility_scan": true
-  }
+    "advanced_filters": false
+  },
+  "env": "stage",
+  "tenant": "txstage",
+  "default_password": "Abcd1234"
 }

@@ -1,0 +1,135 @@
+import re
+from playwright.sync_api import Page, expect
+
+
+def test_example(page: Page) -> None:
+    page.goto("https://researchtx-stage.tylerhost.net/CourtRecordsSearch/Home#!/home")
+    page.get_by_role("link", name="Register", exact=True).click()
+    page.get_by_role("textbox", name="First Name").fill("Codgen")
+    page.get_by_role("textbox", name="First Name").press("ArrowLeft")
+    page.get_by_role("textbox", name="First Name").press("ArrowLeft")
+    page.get_by_role("textbox", name="First Name").press("ArrowLeft")
+    page.get_by_role("textbox", name="First Name").fill("Codegen")
+    page.get_by_role("textbox", name="First Name").press("Tab")
+    page.get_by_role("textbox", name="Last Name").fill("User")
+    page.get_by_role("textbox", name="Last Name").press("Tab")
+    page.get_by_role("textbox", name="Email").fill("codegen_public_9202051@mailinator.com")
+    page.get_by_role("textbox", name="Email").press("ControlOrMeta+a")
+    page.get_by_role("textbox", name="Email").press("ControlOrMeta+c")
+    page.get_by_role("textbox", name="Email").press("Tab")
+    page.get_by_role("textbox", name="Password", exact=True).fill("Abcd1234")
+    page.get_by_role("textbox", name="Password", exact=True).press("Tab")
+    page.get_by_role("textbox", name="Confirm Password").fill("Abcd1234")
+    page.get_by_role("textbox", name="Confirm Password").press("Tab")
+    page.get_by_label("Account Type", exact=True).press("Tab")
+    page.get_by_role("button", name="Register").click()
+    page.get_by_text("An account activation email").click()
+    expect(page.get_by_role("alert")).to_contain_text("An account activation email has been sent to you. Click the link inside the email to activate your account.")
+    expect(page.get_by_text("× An account activation email")).to_be_visible()
+    page1.goto("https://www.mailinator.com/")
+    page1.get_by_role("textbox", name="Enter public inbox").click()
+    page1.get_by_role("textbox", name="Enter public inbox").fill("codegen_public_9202051@mailinator.com")
+    page1.get_by_role("button", name="GO").click()
+    page1.get_by_role("cell", name="re:SearchTX - Activate Account").click()
+    with page1.expect_popup() as page2_info:
+        page1.locator("iframe[name=\"html_msg_body\"]").content_frame.get_by_role("link", name="Activate Account").click()
+    page2 = page2_info.value
+    page2.get_by_role("button", name="Sign in").click()
+    page2.goto("https://texas-stage.tylertech.cloud/idp/account/signin?ReturnUrl=%2fidp%2fissue%2fwsfed%3fwtrealm%3dhttps%253A%252F%252Fresearchtx-stage.tylerhost.net%252Fauth%252Fofs%26wctx%3dWsFedOwinState%253DYVKCOGF7fDzBgzpXsmSUVGTy8eXJ_FJpm0irutDqq6g6qrj0upzrBInb3XNgokV1z8zGkm6PrKsQGx6VVLTHJNgdLD9n3HbH_NrUb4wRgBhegpNBKaxgEtysMUKNBALfXZIAvbiQMsV08LdksUpPbGwPzCirHftjppcWFId9GJNEWLED53Acve3SCARss_mas5Xenxwc8E4ezoya_2ek-g%26wa%3dwsignin1.0&wtrealm=https%3A%2F%2Fresearchtx-stage.tylerhost.net%2Fauth%2Fofs&wctx=WsFedOwinState%3DYVKCOGF7fDzBgzpXsmSUVGTy8eXJ_FJpm0irutDqq6g6qrj0upzrBInb3XNgokV1z8zGkm6PrKsQGx6VVLTHJNgdLD9n3HbH_NrUb4wRgBhegpNBKaxgEtysMUKNBALfXZIAvbiQMsV08LdksUpPbGwPzCirHftjppcWFId9GJNEWLED53Acve3SCARss_mas5Xenxwc8E4ezoya_2ek-g&wa=wsignin1.0")
+    page2.get_by_role("textbox", name="Email").click()
+    page2.get_by_role("textbox", name="Email").fill("codegen_public_9202051@mailinator.com")
+    page2.get_by_role("textbox", name="Email").press("Tab")
+    page2.get_by_role("textbox", name="Password").fill("Abcd1234")
+    page2.get_by_role("button", name="Sign In").click()
+    page2.goto("https://researchtx-stage.tylerhost.net/CourtRecordsSearch/account/#!/onboarding")
+    with page2.expect_popup() as page3_info:
+        page2.get_by_role("link", name="terms of use", exact=True).click()
+    page3 = page3_info.value
+    expect(page3.get_by_text("Texas Terms of Use")).to_be_visible()
+    expect(page3.get_by_text("Texas Terms of Use Welcome to")).to_be_visible()
+    page2.get_by_role("button", name="Continue").click()
+    page2.get_by_role("textbox", name="Your Name or Your Firm /").fill("Tyler Tech")
+    page2.get_by_role("textbox", name="Your Name or Your Firm /").press("Tab")
+    page2.get_by_role("textbox", name="Address Line 1 *").fill("Tyler")
+    page2.get_by_role("textbox", name="Address Line 1 *").press("Tab")
+    page2.get_by_role("textbox", name="Address Line 2").fill("Tyler")
+    page2.get_by_role("textbox", name="Address Line 2").press("Tab")
+    page2.get_by_role("textbox", name="City *").fill("Tyler")
+    page2.get_by_role("textbox", name="City *").press("Tab")
+    page2.get_by_label("State *").select_option("number:306")
+    page2.get_by_label("State *").select_option("number:17")
+    page2.get_by_label("State *").press("Tab")
+    page2.get_by_label("County *").press("ArrowDown")
+    page2.get_by_label("County *").select_option("number:295")
+    page2.get_by_label("County *").press("Tab")
+    page2.get_by_role("textbox", name="ZIP Code *").fill("75024")
+    page2.get_by_role("textbox", name="ZIP Code *").press("Tab")
+    page2.get_by_role("textbox", name="Phone Number *").fill("2345678901")
+    page2.get_by_role("textbox", name="Phone Number *").press("Tab")
+    page2.get_by_role("button", name="Next").click()
+    expect(page2.get_by_role("heading", name="Welcome to re:SearchTX,")).to_be_visible()
+    page2.get_by_text("General Public").click()
+    page2.get_by_role("button", name="Continue").click()
+    page2.get_by_role("button", name="Next").click()
+    page2.get_by_role("button", name="Next").click()
+    page2.get_by_role("listitem").filter(has_text="Pricing").locator("div").click()
+    page2.get_by_role("button", name="Get Basic").click()
+    page2.get_by_role("button", name="Maybe Later").click()
+    page2.locator("#dashboard-search-section").get_by_text("Search", exact=True).click()
+    expect(page2.get_by_role("textbox", name="Quick Search")).to_be_visible()
+    page2.get_by_role("textbox", name="Quick Search").click()
+    page2.get_by_role("button", name="Advanced Search").click()
+    page2.get_by_label("CasesHearings").select_option("2")
+    page2.get_by_label("Select search criteria").select_option("number:1")
+    page2.get_by_role("button", name="Select").click()
+    page2.get_by_role("button", name="Next").click()
+    expect(page2.get_by_label("Hearing Type", exact=True).locator("div").filter(has_text="Search for Hearing Type Search SELECT ALL accounting ad hire ad hoc hearing ad").nth(2)).to_be_visible()
+    page2.get_by_text("Search for Hearing Type").click()
+    page2.get_by_role("textbox", name="Search for Hearing Type").fill("trial")
+    page2.get_by_role("textbox", name="Search for Hearing Type").press("Enter")
+    page2.get_by_label("Hearing Type", exact=True).get_by_role("button", name="Search").click()
+    page2.get_by_title("BENCH TRIAL", exact=True).click()
+    page2.get_by_role("button", name="Done").click()
+    page2.get_by_role("button", name="Search").click()
+    expect(page2.locator("#advaned-search-results")).to_contain_text("Bench Trial")
+    page2.get_by_role("link", name="Case Notices for Attorney,").click()
+    expect(page2.locator("#caseDetailsCard").get_by_text("Location")).to_be_visible()
+    expect(page2.locator("#partiesSection div").filter(has_text="Type Name Nickname/Alias").nth(1)).to_be_visible()
+    expect(page2.locator("#hearingsSection > .card > .card-body")).to_be_visible()
+    expect(page2.get_by_title("Bench Trial")).to_be_visible()
+    page2.get_by_title("Bench Trial").click()
+    page2.get_by_text("Bench Trial ×").click()
+    expect(page2.get_by_text("Start Date 9/4/2025 Start")).to_be_visible()
+    expect(page2.get_by_text("Start Date 9/4/2025 Start")).to_be_visible()
+    page2.get_by_role("button", name="Close").click()
+    page2.get_by_role("button", name="Profile Menu").click()
+    page2.get_by_role("button", name="Sign out").click()
+    expect(page2.locator("#topSignInButton")).to_match_aria_snapshot("- button \"Sign in with Your eFileTexas Account\"")
+
+# 10/4/2024, 3:29:14 PM
+
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://researchtx-stage.tylerhost.net/CourtRecordsSearch/Home#!/home');
+  await page.getByRole('link', { name: 'Sign in' }).click();
+  await page.getByRole('textbox', { name: 'Email' }).click();
+  await page.getByRole('textbox', { name: 'Email' }).fill('codegen_public_2eac4451@mailinator.com');
+  await page.getByRole('textbox', { name: 'Email' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Password' }).fill('Abcd1234');
+  await page.getByRole('textbox', { name: 'Password' }).press('Enter');
+  await page.getByRole('button', { name: 'Sign In' }).click();
+  await page.getByRole('button', { name: 'Maybe Later' }).click();
+  await page.getByRole('textbox', { name: 'Quick Search' }).click();
+  await page.getByRole('textbox', { name: 'Quick Search' }).fill('trial');
+  await page.getByRole('button', { name: '' }).click();
+  await page.getByRole('button', { name: 'Got It' }).click();
+  await page.getByLabel('Sorting Options').selectOption('Relevance');
+  await expect(page.locator('tbody')).toContainText('Bend County, Fort Bend County Toll Road Authority vs Cameron Trial');
+  await page.getByRole('link', { name: 'Advanced' }).click();
+  await page.getByLabel('Select search criteria').selectOption('number:6');
+  await page.getByRole('textbox', { name: 'Case Description' }).click();
+  await page.getByRole('textbox', { name: 'Case Description' }).fill('trial');
+  await page.getByRole('button', { name: 'Search' }).click();
+  await expect(page.locator('#advaned-search-results')).toContainText('Case# SW-55549 Auxiliary Trial Room C (MAG)');
+});

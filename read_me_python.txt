@@ -22,3 +22,7 @@ python -m pytest .\tests\test_add_to_cart.py --headed
 
 To run tagged tests:
 python -m pytest -m login
+
+To run codegen:
+npx playwright codegen --target python 
+npx playwright codegen --target python https://researchtx-stage.tylerhost.net/CourtRecordsSearch/Home#!/home > codegen_registration.py
