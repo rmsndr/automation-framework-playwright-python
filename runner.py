@@ -1,14 +1,15 @@
-import os
 import argparse
+import os
 import pytest
 
 def main():
-    parser = argparse.ArgumentParser(description="Run Playwright tests with tenant and browser context.")
-    parser.add_argument("--tenant", required=True, help="Tenant name (e.g., txstage, castage)")
-    parser.add_argument("--browser", default="chromium", help="Browser type (chromium, firefox, webkit)")
-    parser.add_argument("--path", help="Path to specific test file")
-    parser.add_argument("--marker", help="Run tests with specific pytest marker")
-    parser.add_argument("--test", help="Run specific test function (e.g., test_registration)")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--tenant", required=True, help="Tenant to run tests against")
+    parser.add_argument("--browser", default="chromium", help="Browser type")
+    parser.add_argument("--path", default="case_search/tests", help="Path to tests")
+    parser.add_argument("--marker", help="Pytest marker to select tests")
+    parser.add_argument("--test", help="Specific test file or test function")
+    parser.add_argument("--user_type", choices=["new", "existing"], default="new", help="Run as new or existing user")
 
     args = parser.parse_args()
 
@@ -16,15 +17,15 @@ def main():
     os.environ["tenant"] = args.tenant
     os.environ["browser"] = args.browser
 
-    print(f"Running tests for tenant: {args.tenant} on browser: {args.browser}")
-
-    pytest_args = [args.path if args.path else "case_search/tests", "-s"]
+    # Build pytest args – only forward user_type (pytest knows about this)
+    pytest_args = [args.path, f"--user_type={args.user_type}"]
 
     if args.marker:
         pytest_args.extend(["-m", args.marker])
     if args.test:
-        pytest_args.append(f"::{args.test}")
+        pytest_args.append(args.test)
 
+    print(f"Running tests for tenant: {args.tenant} on browser: {args.browser} as {args.user_type} user")
     pytest.main(pytest_args)
 
 if __name__ == "__main__":

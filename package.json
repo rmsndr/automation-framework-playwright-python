@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/rmsndr/saucedemo-tests#readme",
   "devDependencies": {
-    "@playwright/test": "^1.54.2",
+    "@playwright/test": "^1.55.1",
     "playwright": "^1.54.2"
   }
 }

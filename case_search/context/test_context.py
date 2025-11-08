@@ -13,6 +13,8 @@ class TestContext:
         self.config = self._load_config(tenant)
         self.base_url = self.config.get("base_url")
         self.features = self.config.get("features", {})
+        self.email = None  # To be set during user login
+        self.default_password = self.config.get("default_password")
 
     def _launch_browser(self):
         p = sync_playwright().start()

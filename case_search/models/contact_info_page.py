@@ -1,18 +1,45 @@
-from playwright.sync_api import Page
+from playwright.sync_api import Page, Locator
 
 class ContactInfoPage:
     def __init__(self, page: Page):
         self.page = page
 
-    def fill_contact_info(self, name: str, address1: str, address2: str, city: str, state: str, county: str, zip_code: str, phone: str):
-        self.page.get_by_role("textbox", name="Your Name or Your Firm /").fill(name)
-        self.page.get_by_role("textbox", name="Address Line 1 *").fill(address1)
-        self.page.get_by_role("textbox", name="Address Line 2").fill(address2)
-        self.page.get_by_role("textbox", name="City *").fill(city)
-        self.page.get_by_label("State *").select_option(state)
-        self.page.get_by_label("County *").select_option(county)
-        self.page.get_by_role("textbox", name="ZIP Code *").fill(zip_code)
-        self.page.get_by_role("textbox", name="Phone Number *").fill(phone)
+    class TermsModal:
+        def __init__(self, root: Locator):
+            self._root = root
 
-    def continue_next(self):
-        self.page.get_by_role("button", name="Next").click()
+        def continue_button(self) -> Locator:
+            #$("#termsAndConditionsModal .btn-primary").length 
+            return self._root.locator("#termsAndConditionsModal").get_by_role("button", name="Continue")
+
+
+    def terms_modal(self) -> TermsModal:
+        modal_root = self.page.get_by_role("dialog", name="Terms")
+        return self.TermsModal(modal_root)
+
+    def name_field(self) -> Locator:
+        return self.page.get_by_label("Your Name or Your Firm")
+
+    def address1_field(self) -> Locator:
+        return self.page.get_by_label("Address Line 1 *")
+
+    def address2_field(self) -> Locator:
+        return self.page.get_by_label("Address Line 2")
+
+    def city_field(self) -> Locator:
+        return self.page.get_by_label("City *")
+
+    def state_select(self) -> Locator:
+        return self.page.get_by_label("State *")
+
+    def county_select(self) -> Locator:
+        return self.page.get_by_label("County *")
+
+    def zip_code_field(self) -> Locator:
+        return self.page.get_by_label("ZIP Code *")
+
+    def phone_field(self) -> Locator:
+        return self.page.get_by_label("Phone Number *")
+
+    def next_button(self) -> Locator:
+        return self.page.get_by_role("button", name="Next")

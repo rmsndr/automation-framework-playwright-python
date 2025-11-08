@@ -105,3 +105,31 @@ def test_example(page: Page) -> None:
     page2.get_by_role("button", name="Profile Menu").click()
     page2.get_by_role("button", name="Sign out").click()
     expect(page2.locator("#topSignInButton")).to_match_aria_snapshot("- button \"Sign in with Your eFileTexas Account\"")
+
+# 10/4/2024, 3:29:14 PM
+
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://researchtx-stage.tylerhost.net/CourtRecordsSearch/Home#!/home');
+  await page.getByRole('link', { name: 'Sign in' }).click();
+  await page.getByRole('textbox', { name: 'Email' }).click();
+  await page.getByRole('textbox', { name: 'Email' }).fill('codegen_public_2eac4451@mailinator.com');
+  await page.getByRole('textbox', { name: 'Email' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Password' }).fill('Abcd1234');
+  await page.getByRole('textbox', { name: 'Password' }).press('Enter');
+  await page.getByRole('button', { name: 'Sign In' }).click();
+  await page.getByRole('button', { name: 'Maybe Later' }).click();
+  await page.getByRole('textbox', { name: 'Quick Search' }).click();
+  await page.getByRole('textbox', { name: 'Quick Search' }).fill('trial');
+  await page.getByRole('button', { name: '' }).click();
+  await page.getByRole('button', { name: 'Got It' }).click();
+  await page.getByLabel('Sorting Options').selectOption('Relevance');
+  await expect(page.locator('tbody')).toContainText('Bend County, Fort Bend County Toll Road Authority vs Cameron Trial');
+  await page.getByRole('link', { name: 'Advanced' }).click();
+  await page.getByLabel('Select search criteria').selectOption('number:6');
+  await page.getByRole('textbox', { name: 'Case Description' }).click();
+  await page.getByRole('textbox', { name: 'Case Description' }).fill('trial');
+  await page.getByRole('button', { name: 'Search' }).click();
+  await expect(page.locator('#advaned-search-results')).toContainText('Case# SW-55549 Auxiliary Trial Room C (MAG)');
+});

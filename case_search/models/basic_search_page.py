@@ -1,14 +1,23 @@
 from playwright.sync_api import Page, expect
-from case_search.models.advanced_search_page import AdvancedSearchPage
 
 class BasicSearchPage:
     def __init__(self, page: Page):
         self.page = page
 
-    def validate_first_result_contains(self, term: str):
-        first_result = self.page.locator("#basic-search-results .result-item").first
-        expect(first_result).to_contain_text(term)
+    def first_result(self):
+        return self.page.locator("#basic-search-results .result-item").first
 
-    def open_advanced_search(self) -> AdvancedSearchPage:
-        self.page.get_by_role("button", name="Advanced Search").click()
-        return AdvancedSearchPage(self.page)
+    def got_it_popup_button(self):
+        return self.page.get_by_role("button", name="Got It")
+
+    def sorting_dropdown(self):
+        # The label is 'Sorting Options' in the recording
+        return self.page.get_by_label("Sorting Options")
+
+    def advanced_search_button(self):
+        # The recording uses a link named 'Advanced'
+        return self.page.get_by_role("link", name="Advanced")
+
+    def results_table(self):
+        return self.page.locator("tbody")
+

@@ -4,12 +4,27 @@ class AdvancedSearchPage:
     def __init__(self, page: Page):
         self.page = page
 
-    def select_criteria(self, criteria: str):
-        self.page.get_by_label("Select search criteria").select_option(criteria)
+    def criteria_dropdown(self):
+        return self.page.get_by_label("Select search criteria")
 
-    def search_hearing_type(self, hearing_type: str):
-        self.page.get_by_text("Search for Hearing Type").click()
-        self.page.get_by_role("textbox", name="Search for Hearing Type").fill(hearing_type)
-        self.page.get_by_role("textbox", name="Search for Hearing Type").press("Enter")
-        self.page.get_by_role("button", name="Search").click()
-        expect(self.page.locator("#advanced-search-results")).to_contain_text(hearing_type)
+    def hearing_type_trigger(self):
+        return self.page.get_by_text("Search for Hearing Type")
+
+    def hearing_type_field(self):
+        return self.page.get_by_role("textbox", name="Search for Hearing Type")
+
+    def search_button(self):
+        return self.page.get_by_role("button", name="Search")
+
+    def search_results(self):
+        return self.page.locator("#advanced-search-results")
+    
+
+    def case_description_field(self):
+        return self.page.get_by_role("textbox", name="Case Description")
+
+    def first_search_result(self):
+        return self.page.locator("#advanced-search-results >> nth=0")
+
+
+

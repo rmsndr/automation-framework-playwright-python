@@ -1,6 +1,4 @@
 from playwright.sync_api import Page
-from case_search.models.basic_search_page import BasicSearchPage
-from case_search.models.advanced_search_page import AdvancedSearchPage
 
 class DashboardPage:
     def __init__(self, page: Page):
@@ -10,23 +8,33 @@ class DashboardPage:
         def __init__(self, page: Page):
             self.page = page
 
-        def select_basic(self):
-            self.page.get_by_role("button", name="Get Basic").click()
+        def get_basic_button(self):
+            return self.page.get_by_role("button", name="Get Basic")
 
-        def maybe_later(self):
-            self.page.get_by_role("button", name="Maybe Later").click()
+        def maybe_later_button(self):
+            return self.page.get_by_role("button", name="Maybe Later")
 
-    def open_basic_search(self, query: str) -> BasicSearchPage:
-        self.page.get_by_role("textbox", name="Quick Search").fill(query)
-        self.page.get_by_role("button", name="Search").click()
-        return BasicSearchPage(self.page)
+    def basic_search_field(self):
+        return self.page.get_by_role("textbox", name="Quick Search")
 
-    def open_advanced_search(self) -> AdvancedSearchPage:
-        self.page.get_by_role("button", name="Advanced Search").click()
-        return AdvancedSearchPage(self.page)
+    def basic_search_button(self):
+        return self.page.get_by_role("button", name="Search")
 
-    def open_profile_menu(self):
-        self.page.get_by_role("button", name="Profile Menu").click()
+    def advanced_search_button(self):
+        return self.page.get_by_role("button", name="Advanced Search")
 
-    def sign_out(self):
-        self.page.get_by_role("button", name="Sign out").click()
+    def profile_menu_button(self):
+        return self.page.get_by_role("button", name="Profile Menu")
+
+    def sign_out_button(self):
+        return self.page.get_by_role("button", name="Sign out")
+
+    def badge_research(self):
+        return self.page.locator(".badge.badge-research")
+
+    def search_icon_button(self):
+        return self.page.get_by_role("button", name="")
+
+    def consider_subscribing_modal(self):
+        return self.page.locator("#considerSubscribingModal")
+
