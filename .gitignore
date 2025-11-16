@@ -1,8 +1,50 @@
 node_modules/
 test-results/
-__pycache__/
 axe_results/
 # *.txt
-*.pyc
 screenshots/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
 *.log
+*.pyc
+
+# Virtual environments
+venv/
+.env/
+.envrc
+
+# Playwright
+playwright-report/
+test-results/
+*.zip
+*.webm
+*.png
+*.mp4
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# HTML reports
+*.html
+report.html
+
+# Copilot indices and layout files
+CopilotIndicies/
+DocumentLayout.backup.json
+
+# Visual Studio artifacts (if applicable)
+.vs/
+*.db
+*.sqlite
+*.backup.json
