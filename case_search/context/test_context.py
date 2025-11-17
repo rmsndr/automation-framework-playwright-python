@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
@@ -14,6 +15,7 @@ class TestContext:
         self.base_url = self.config.get("base_url")
         self.features = self.config.get("features", {})
         self.email = None  # To be set during user login
+        self.generated_email = None  # To be set during user registration
         self.default_password = self.config.get("default_password")
 
     def _launch_browser(self):
@@ -34,7 +36,26 @@ class TestContext:
         with open(config_path, "r") as f:
             return json.load(f)
 
+    #If you want to force a clean run: 
+    #rm state/session_state.json state/last_user.txt
+
+
     def launch_page(self):
-        self.page = self.browser.new_page()
-        self.page.goto(self.base_url)
+        state_file = "state/session_state.json"
+        email_file = "state/last_user.txt"
+
+        if os.path.exists(state_file) and os.path.exists(email_file):
+            # Resume from saved session
+            self.browser_context = self.browser.new_context(storage_state=state_file)
+            self.page = self.browser_context.new_page()
+            with open(email_file) as f:
+                self.generated_email = f.read().strip()
+            print(f"[Resume] Loaded session for {self.generated_email}")
+        else:
+            # Fresh start
+            self.browser_context = self.browser.new_context()
+            #self.page = self.browser.new_page()            
+            self.page = self.browser_context.new_page()
+            self.page.goto(self.base_url)            
+            print("[Launch] Started new browser context")        
         return self.page
