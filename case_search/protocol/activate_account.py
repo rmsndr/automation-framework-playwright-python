@@ -36,3 +36,13 @@ def activate_account(context):
 
     print(f"[Activation] Activated account for {email} and switched to activation tab.")
 
+    # Save browser storage state (cookies, localStorage, etc.)
+    context.browser_context.storage_state(path="state/session_state.json")
+
+    # Save the generated email for reuse
+    with open("state/last_user.txt", "w") as f:
+        f.write(context.generated_email)
+
+    print(f"[Persist] Saved session + user {context.generated_email}")
+    
+

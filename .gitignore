@@ -3,6 +3,8 @@ test-results/
 axe_results/
 # *.txt
 screenshots/
+state/
+/case_search/tmp/
 
 # Python
 __pycache__/

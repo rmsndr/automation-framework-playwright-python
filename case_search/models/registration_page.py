@@ -37,3 +37,18 @@ class RegistrationPage:
     @property
     def alert(self) -> Locator:
         return self.page.get_by_role("alert")
+    
+    def click_signin_and_wait(self, wait_url: str = None, timeout: int = 10000):
+        """
+        Clicks the sign-in button (by id) and waits for the next page to load.
+        Optionally waits for a specific URL if wait_url is provided.
+        """
+        locator = self.page.locator("#signInLink")
+        if wait_url:
+            with self.page.expect_navigation(url=wait_url, timeout=timeout):
+                locator.click()
+        else:
+            with self.page.expect_navigation(timeout=timeout):
+                locator.click()
+        return locator
+    
