@@ -10,9 +10,11 @@ class CheckOutStepTwoPage:
         # self.page.wait_for_url("https://www.saucedemo.com/checkout-complete.html")
    
     def get_backpack_price_on_checkout(self):
-        # Assuming the backpack price is obtained from executing a JavaScript query
+        """Get the backpack price from the checkout step two page."""
         backpack_price = self.page.evaluate(
             "document.querySelector('#item_4_title_link').nextElementSibling.nextElementSibling.querySelector('.inventory_item_price').textContent"
         )
-        return backpack_price if backpack_price else Exception("Backpack price not found")
+        if not backpack_price:
+            raise ValueError("Backpack price not found on checkout step two page")
+        return backpack_price
     #$('#item_4_title_link').nextElementSibling.nextElementSibling.querySelector(".inventory_item_price").textContent
