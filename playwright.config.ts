@@ -8,6 +8,10 @@ export default defineConfig({
     headless: true,
     screenshot: 'only-on-failure',
     trace: 'on-first-retry',
+    video: {
+      mode: 'on',
+      size: { width: 640, height: 480 }
+    }
   },
   projects: [
     { name: 'Chromium', use: { browserName: 'chromium' } },
